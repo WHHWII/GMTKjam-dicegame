@@ -27,10 +27,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        if (isSelectingTarget)
+        if (isSelectingTarget) // While selecting target, player may use arrow keys to cycle their target index, corresponding with the list of targets
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Return))
             {
+                targets[targetIndex].WhenSelected(player);
                 isSelectingTarget = false;
             }
         }
@@ -67,7 +68,7 @@ public class GameManager : MonoBehaviour
     {
         return roomPrefabs[index];
     }
-    public async Task PickTarget(Targetable[] possibleTargets, int targIndx = 0)
+    public async Task PickTarget(Targetable[] possibleTargets, int targIndx = 0) // Waits for player to select a target.
     {
         targets = possibleTargets;
         isSelectingTarget = true;

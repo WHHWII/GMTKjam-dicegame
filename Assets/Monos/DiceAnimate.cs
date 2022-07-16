@@ -7,18 +7,22 @@ public class DiceAnimate : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     int currentSpriteNum;
+    public Sprite deathSprite;
     public Sprite[] dieSprites;
+
     // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        
         spriteRenderer.sprite = dieSprites[dieSprites.Length-1];
         currentSpriteNum = dieSprites.Length-1;
     }
 
     public IEnumerator CycleFace(int increment = -1, float faceDelay = .3f)
     {
-        if (increment != 0)
+        yield return PlayRoll();
+        if (increment != 0) // would be cool to make the delay be fast at first and slow down near the end.
         {
             int targetFace = currentSpriteNum + increment;
             int value; // good name
@@ -30,22 +34,34 @@ public class DiceAnimate : MonoBehaviour
             {
                 value = 1;
             }
-            while (currentSpriteNum != targetFace)
+            while (currentSpriteNum != targetFace || !(currentSpriteNum > 0 && currentSpriteNum < dieSprites.Length))
             {
-
-                if (currentSpriteNum > 0 && currentSpriteNum < dieSprites.Length)
-                {
-                    currentSpriteNum += value;
-                    spriteRenderer.sprite = dieSprites[currentSpriteNum];
-                    yield return new WaitForSeconds(faceDelay);
-                }
+                currentSpriteNum += value;
+                spriteRenderer.sprite = dieSprites[currentSpriteNum];
+                yield return new WaitForSeconds(faceDelay);
             }
         }
         
     }
     public void ShowFace(int face, float faceDelay = .3f)
-    {
+    { 
         Debug.Log(face - currentSpriteNum);
         StartCoroutine(CycleFace(face - currentSpriteNum,faceDelay));
+    }
+
+    public IEnumerator PlayRoll(int rolls = 6, float delay = .12f)
+    {
+        for (int i = 0; i < rolls; i++)
+        {
+            spriteRenderer.sprite = dieSprites[Random.Range(0, dieSprites.Length - 1)];
+            yield return new WaitForSeconds(delay);
+        }
+        yield return new WaitForSeconds(delay * 1.5f);
+        spriteRenderer.sprite = dieSprites[currentSpriteNum];
+    }
+    public IEnumerator PlayDeath(float delay = .5f)
+    {
+        spriteRenderer.sprite = deathSprite;
+        yield return new WaitForSeconds(.5f);
     }
 }

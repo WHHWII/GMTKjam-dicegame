@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 272469127}
   - component: {fileID: 272469126}
   - component: {fileID: 272469125}
+  - component: {fileID: 272469128}
   m_Layer: 0
   m_Name: Die Display
   m_TagString: Untagged
@@ -227,6 +228,22 @@ Transform:
   m_Father: {fileID: 446069797}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!111 &272469128
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272469124}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 1d54b5568214aeb4ab70b21fd443029d, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 1d54b5568214aeb4ab70b21fd443029d, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 1
 --- !u!1 &386713480
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,6 +544,7 @@ GameObject:
   - component: {fileID: 735457546}
   - component: {fileID: 735457548}
   - component: {fileID: 735457549}
+  - component: {fileID: 735457550}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -633,6 +651,21 @@ MonoBehaviour:
   - {fileID: -739076256, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
   - {fileID: -1794425382, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
   - {fileID: -820678047, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
+--- !u!111 &735457550
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735457545}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1003497226
 GameObject:
   m_ObjectHideFlags: 0

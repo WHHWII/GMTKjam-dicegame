@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fa177d8ccdb474692c11779a104463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathSprite: {fileID: -593691248, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
   dieSprites:
   - {fileID: 1997351429, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
   - {fileID: 1404356011, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}

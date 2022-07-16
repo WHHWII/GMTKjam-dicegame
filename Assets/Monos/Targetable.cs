@@ -14,4 +14,8 @@ public class Targetable : MonoBehaviour
             //Hide visual
         }
     }
+    public virtual void WhenSelected(DiceMob selector)
+    {
+
+    }
 }

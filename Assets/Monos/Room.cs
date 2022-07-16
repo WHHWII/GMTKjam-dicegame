@@ -16,6 +16,7 @@ public class Room : MonoBehaviour
         foreach(Transform s in transform) // spawn the enemies at the spawn points in the room.
         {
             DiceMob enemy = Instantiate(GameManager.singleton.GetRandomEnemy());
+            Debug.Log(enemy);
             enemy.transform.position = s.position;
             enemies.Add(enemy);
             s.gameObject.SetActive(false); // hides the spawn icon used for creating the prefabs
@@ -37,6 +38,13 @@ public class Room : MonoBehaviour
         }
         await GameManager.singleton.PickTarget(targetableComponents.ToArray());
         //pass turn to enemies
+        foreach(DiceMob enemy in enemies)
+        {
+            if (!enemy.alive)
+            {
+                Destroy(enemy);
+            }
+        }
         return;
     }
     
