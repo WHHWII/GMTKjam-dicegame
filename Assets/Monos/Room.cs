@@ -29,7 +29,12 @@ public class Room : MonoBehaviour
     async Task ProccessTurn()
     {
         //pass turn to player.
-        await player.PickTarget(enemies.ToArray());
+        List<Targetable> targetableComponents = new List<Targetable>();
+        foreach (DiceMob enemy in enemies)
+        {
+            targetableComponents.Add(enemy.GetComponent<Targetable>());
+        }
+        await GameManager.singleton.PickTarget(targetableComponents.ToArray());
         //pass turn to enemies
         return;
     }
