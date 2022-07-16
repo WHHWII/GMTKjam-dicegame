@@ -6,15 +6,13 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     Player player;
-    public Transform[] spawns;
     public List<DiceMob> enemies;
-    static Vector2 RoomPosition = Vector2.zero;
+    static Vector3 RoomPosition = new Vector3(0, 0, 5);
     private async void Awake()
     {
         transform.position = RoomPosition;
         player = GameManager.singleton.player;
-        spawns = transform.GetComponentsInChildren<Transform>();
-        foreach(Transform s in spawns) // spawn the enemies at the spawn points in the room //For some reason it spawns 1 extra enemy.
+        foreach(Transform s in transform) // spawn the enemies at the spawn points in the room.
         {
             DiceMob enemy = Instantiate(GameManager.singleton.GetRandomEnemy());
             enemy.transform.position = s.position;
