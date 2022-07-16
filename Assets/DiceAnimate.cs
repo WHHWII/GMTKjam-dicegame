@@ -26,6 +26,6 @@ public class DiceAnimate : MonoBehaviour
                 spriteRenderer.sprite = dieSprites[currentSpriteNum];
                 
             }
-        }
+        }//test
     }
 }
