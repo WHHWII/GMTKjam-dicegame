@@ -11,8 +11,7 @@ public class Player : DiceMob
     int sleepInterval = 50;
     private void Update()
     {
-        
-            
+
     }
     
 }

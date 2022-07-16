@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(DiceAnimate))]
-public class DiceMob : MonoBehaviour
+public class DiceMob : Targetable
 {
     
     protected int baseHealth;
     protected int curHealth;
-    public DiceMob target;
-    string name;
+    public Targetable target;
     DiceAnimate diceAnimator;
+    static int mobCounter = 0;
    
     
     
@@ -25,6 +25,8 @@ public class DiceMob : MonoBehaviour
     void Start()
     {
         curHealth = baseHealth;
+        ++mobCounter;
+        gameObject.name = gameObject.name + mobCounter.ToString();
         diceAnimator = gameObject.GetComponent<DiceAnimate>();
     }
 
@@ -40,7 +42,7 @@ public class DiceMob : MonoBehaviour
     void TakeDamage(int damage)
     {
         curHealth -= damage;
-        diceAnimator.NextFace(-damage);
+        diceAnimator.CycleFace(-damage);
         //cycle die face down to damage number;
     }
 

@@ -11,21 +11,41 @@ public class DiceAnimate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        //spriteRenderer.sprite = dieSprites[dieSprites.Length];
-        //currentSpriteNum = dieSprites.Length;
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = dieSprites[dieSprites.Length-1];
+        currentSpriteNum = dieSprites.Length-1;
     }
 
-    public void NextFace(int increment = -1)
+    public IEnumerator CycleFace(int increment = -1, float faceDelay = .3f)
     {
-        for(int i = 0; i < increment; i++)
+        if (increment != 0)
         {
-            if (currentSpriteNum > 0 && currentSpriteNum < dieSprites.Length)
+            int targetFace = currentSpriteNum + increment;
+            int value; // good name
+            if (increment < 0)
             {
-                currentSpriteNum += increment;
-                spriteRenderer.sprite = dieSprites[currentSpriteNum];
-                
+                value = -1;
             }
-        }//test
+            else
+            {
+                value = 1;
+            }
+            while (currentSpriteNum != targetFace)
+            {
+
+                if (currentSpriteNum > 0 && currentSpriteNum < dieSprites.Length)
+                {
+                    currentSpriteNum += value;
+                    spriteRenderer.sprite = dieSprites[currentSpriteNum];
+                    yield return new WaitForSeconds(faceDelay);
+                }
+            }
+        }
+        
+    }
+    public void ShowFace(int face, float faceDelay = .3f)
+    {
+        Debug.Log(face - currentSpriteNum);
+        StartCoroutine(CycleFace(face - currentSpriteNum,faceDelay));
     }
 }
