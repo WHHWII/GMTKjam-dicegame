@@ -7,10 +7,11 @@ public class Room : MonoBehaviour
 {
     Player player;
     public List<DiceMob> enemies;
-    static Vector3 RoomPosition = new Vector3(0, 0, 5);
+    static Vector3 roomPosition = new Vector3(0, 0, 5);
     private async void Awake()
     {
-        transform.position = RoomPosition;
+        roomPosition = GameManager.singleton.roomPositioner.position;
+        transform.position = roomPosition;
         player = GameManager.singleton.player;
         foreach(Transform s in transform) // spawn the enemies at the spawn points in the room.
         {

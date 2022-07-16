@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     bool isSelectingTarget = false;
     int targetIndex = 0;
     Targetable selectedTarget;
+    public Transform roomPositioner;
     // Start is called before the first frame update
     void Awake()
     {
