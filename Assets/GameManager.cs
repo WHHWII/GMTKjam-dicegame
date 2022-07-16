@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager singleton;
     public DiceMob[] enemyPrefabs; //referenced by room class to spawn random enemies
     public Room[] roomPrefabs;
+    public Transform roomPositioner;
     // Start is called before the first frame update
     void Awake()
     {
