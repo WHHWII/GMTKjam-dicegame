@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Targetable : MonoBehaviour
 {
+    public GameObject targetVisual;
+    GameObject instantiatedTargetVisual;
     public void EnableTargetedVisual(bool show)
     {
         if (show)
         {
-            //Show visual
+            instantiatedTargetVisual = Instantiate(targetVisual);
+            instantiatedTargetVisual.transform.position = gameObject.transform.position + new Vector3(0,0,0.01f);
         } else
         {
-            //Hide visual
+            Destroy(instantiatedTargetVisual);
         }
     }
     public virtual void WhenSelectedBy(DiceMob selector)

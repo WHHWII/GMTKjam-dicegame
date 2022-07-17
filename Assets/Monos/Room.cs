@@ -28,6 +28,7 @@ public class Room : MonoBehaviour
             await ProccessTurn();
         }
     }
+    int nextAttackingEnemyIndex = 0;
     async Task ProccessTurn()
     {
         //pass turn to player.
@@ -38,6 +39,7 @@ public class Room : MonoBehaviour
         }
         await GameManager.singleton.PickTarget(targetableComponents.ToArray());
         //pass turn to enemies
+        
         foreach(DiceMob enemy in enemies.ToArray())
         {
             if (!enemy.alive)
@@ -46,6 +48,10 @@ public class Room : MonoBehaviour
                 Destroy(enemy.gameObject);
             }
         }
+        Debug.Log("Enemy attacked " + nextAttackingEnemyIndex);
+        DiceMob attackingEnemy = enemies[nextAttackingEnemyIndex];
+        attackingEnemy.Attack(player);
+        nextAttackingEnemyIndex = (nextAttackingEnemyIndex + 1) % enemies.Count;
         return;
     }
     

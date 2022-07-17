@@ -57,7 +57,7 @@ public class DiceMob : Targetable
         //cycle die face down to damage number;
     }
     
-    void Attack(DiceMob foe)
+    public void Attack(DiceMob foe)
     {
         int damage = Random.Range(1, curHealth);
         Debug.Log($"you rolled a {damage}!");
