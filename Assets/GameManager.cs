@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
 
     public Player player;
+    public Player playerPrefab;
     public Room currentRoom;
     public static GameManager singleton;
     public DiceMob[] enemyPrefabs; //referenced by room class to spawn random enemies
@@ -29,7 +30,22 @@ public class GameManager : MonoBehaviour
             currentRoom = Instantiate(roomPrefabs[0]);
         }
     }
-
+    public void RestartGame()
+    {
+        DiceAnimate dieani = player.GetComponent<DiceAnimate>();
+        Destroy(player.gameObject);
+        player = Instantiate(playerPrefab);
+        player.Health = dieani.dieSprites.Length-1;
+        dieani.ShowFace(dieani.dieSprites.Length);
+        foreach(DiceMob enemy in currentRoom.enemies.ToArray())
+        {
+            currentRoom.enemies.Remove(enemy);
+            Destroy(enemy.gameObject);
+        }
+        
+        Destroy(currentRoom.gameObject);
+        currentRoom = Instantiate(roomPrefabs[0]);
+    }
     
     void Update()
     {

@@ -21,14 +21,20 @@ public class DiceMob : Targetable
         {
             return curHealth;
         }
+        set
+        {
+            curHealth = value;
+        }
     }
 
     void Start()
     {
+        diceAnimator = gameObject.GetComponent<DiceAnimate>();
+        baseHealth = diceAnimator.dieSprites.Length-1;
         curHealth = baseHealth;
         ++mobCounter;
         gameObject.name = gameObject.name + mobCounter.ToString();
-        diceAnimator = gameObject.GetComponent<DiceAnimate>();
+        
     }
 
     // Update is called once per frame
@@ -59,6 +65,7 @@ public class DiceMob : Targetable
     public Coroutine Attack(DiceMob foe)
     {
         diceAnimator.spriteRenderer.color = Color.red;
+        
         int damage = Random.Range(1, curHealth);
         Debug.Log($"{gameObject.name} rolled a {damage}!");
         foe.TakeDamage(damage);
@@ -73,8 +80,8 @@ public class DiceMob : Targetable
 
     void Die()
     {
-        StartCoroutine(diceAnimator.PlayDeath());
-        //Destroy(gameObject);
+        
+        
     }
     public override void WhenSelectedBy(DiceMob selector)
     {

@@ -94,6 +94,10 @@ public class Room : MonoBehaviour
 
         }
         turnInProgress = false;
+        if (!GameManager.singleton.player.alive)
+        {
+            GameManager.singleton.RestartGame();
+        }
         yield return null;
     }
     
