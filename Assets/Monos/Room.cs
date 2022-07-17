@@ -48,10 +48,10 @@ public class Room : MonoBehaviour
                 Destroy(enemy.gameObject);
             }
         }
+        nextAttackingEnemyIndex = (nextAttackingEnemyIndex + 1) % enemies.Count;
         Debug.Log("Enemy attacked " + nextAttackingEnemyIndex);
         DiceMob attackingEnemy = enemies[nextAttackingEnemyIndex];
         attackingEnemy.Attack(player);
-        nextAttackingEnemyIndex = (nextAttackingEnemyIndex + 1) % enemies.Count;
         return;
     }
     
