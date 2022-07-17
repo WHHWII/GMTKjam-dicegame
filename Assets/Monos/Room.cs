@@ -10,6 +10,7 @@ public class Room : MonoBehaviour
     static Vector3 roomPosition = new Vector3(0, 0, 5);
 
     bool turnInProgress = false;
+    bool roomSelectInProgress = false;
 
     private async void Awake()
     {
@@ -32,7 +33,29 @@ public class Room : MonoBehaviour
         {
             turnInProgress = true;
             StartCoroutine(ProccessTurn());
+        }else if(roomSelectInProgress == false && enemies.Count == 0)
+        {
+            roomSelectInProgress = true;
+            StartCoroutine(ProccessRoomSelection());
         }
+    }
+
+    IEnumerator ProccessRoomSelection()
+    {
+        GameManager.singleton.SpawnDoors();
+        GameManager.singleton.PickTarget(GameManager.singleton.doors.ToArray());
+
+        List<Targetable> targetableComponents = new List<Targetable>();
+        foreach (Door door in GameManager.singleton.doors)
+        {
+            targetableComponents.Add(door.GetComponent<Targetable>());
+        }
+        yield return StartCoroutine(GameManager.singleton.PickTarget(targetableComponents.ToArray()));
+        Door targetedDoor = GameManager.singleton.currentTarget.GetComponent<Door>();
+        targetedDoor.WhenSelectedBy(player);
+        yield return new WaitForSeconds(0.3f);
+        roomSelectInProgress = false;
+        yield return null;
     }
 
     int nextAttackingEnemyIndex = 0;

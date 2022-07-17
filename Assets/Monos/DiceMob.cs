@@ -58,14 +58,16 @@ public class DiceMob : Targetable
     
     public Coroutine Attack(DiceMob foe)
     {
+        diceAnimator.spriteRenderer.color = Color.red;
         int damage = Random.Range(1, curHealth);
         Debug.Log($"{gameObject.name} rolled a {damage}!");
         foe.TakeDamage(damage);
-        return diceAnimator.ShowFace(damage);
+        return diceAnimator.ShowFace(damage); 
     }
 
     public Coroutine SetFace(int face)
     {
+        diceAnimator.spriteRenderer.color = Color.white;
         return diceAnimator.ShowFace(face);
     }
 

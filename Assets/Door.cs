@@ -15,6 +15,14 @@ public class Door : Targetable
     
     public override void WhenSelectedBy(DiceMob Selector)
     {
-        GameManager.singleton.currentRoom = GameManager.singleton.roomPrefabs[roomVal];
+        Room currentRoom = GameManager.singleton.currentRoom;
+        GameManager.singleton.currentRoom = Instantiate(GameManager.singleton.roomPrefabs[roomVal-1]);
+        Destroy(currentRoom);
+        foreach(Door door in GameManager.singleton.doors.ToArray())
+        {
+            GameManager.singleton.doors.Remove(door);
+            Destroy(door);
+        }
+
     }
 }

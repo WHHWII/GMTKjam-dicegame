@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public DiceMob[] enemyPrefabs; //referenced by room class to spawn random enemies
     public Room[] roomPrefabs;
     public Door door;
+    public List<Door> doors;
 
     Targetable[] targets;
     bool isSelectingTarget = false;
@@ -27,7 +28,6 @@ public class GameManager : MonoBehaviour
         {
             currentRoom = Instantiate(GetRandomRoom());
         }
-        SpawnDoors();
     }
 
     
@@ -89,13 +89,14 @@ public class GameManager : MonoBehaviour
         Debug.Log("Turn ended");
         yield return currentTarget;
     }
-    void SpawnDoors()
+    public void SpawnDoors()
     {
         for(int i = 0;i<doorPositioners.Length;i++)
         {
             Door _door = Instantiate(door);
             _door.transform.position = doorPositioners[i].position;
             _door.transform.rotation = Quaternion.Euler(0, 0, 90*i);
+            doors.Add(_door);
         }
     }
 }

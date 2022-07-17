@@ -439,7 +439,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 998536508, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
+  m_Sprite: {fileID: 1180712384, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -493,12 +493,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
   dieSprites:
-  - {fileID: -593691248, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
-  - {fileID: 1923930201, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
-  - {fileID: -1044193451, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
-  - {fileID: -739076256, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
-  - {fileID: -1794425382, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
-  - {fileID: -820678047, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
+  - {fileID: 336266343, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
+  - {fileID: 370848422, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
+  - {fileID: -618273944, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
+  - {fileID: 1068372746, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
+  - {fileID: -531583194, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
+  - {fileID: 1668738981, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
+  - {fileID: 1180712384, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
 --- !u!111 &735457550
 Animation:
   m_ObjectHideFlags: 0
@@ -701,6 +702,7 @@ MonoBehaviour:
   - {fileID: 7414421480175012469, guid: d9ee2e2d03f780945a04180585f2d67d, type: 3}
   - {fileID: 4226269686246372464, guid: 1211dc349a5c21c47a71264af0e681aa, type: 3}
   door: {fileID: 8481538032709511893, guid: d61b9870511629a419150b4f58a03b69, type: 3}
+  currentTarget: {fileID: 0}
   roomPositioner: {fileID: 2128857819}
   doorPositioners:
   - {fileID: 1429632401}
