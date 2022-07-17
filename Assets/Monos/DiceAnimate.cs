@@ -7,7 +7,6 @@ public class DiceAnimate : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     int currentSpriteNum;
-    public Sprite deathSprite;
     public Sprite[] dieSprites;
 
     // Start is called before the first frame update
@@ -34,9 +33,9 @@ public class DiceAnimate : MonoBehaviour
             {
                 value = 1;
             }
-            while (currentSpriteNum != targetFace || !(currentSpriteNum > 0 && currentSpriteNum < dieSprites.Length))
+            while (currentSpriteNum != targetFace)
             {
-                currentSpriteNum += value;
+                currentSpriteNum = Mathf.Clamp(currentSpriteNum + value, 0, dieSprites.Length - 1);
                 spriteRenderer.sprite = dieSprites[currentSpriteNum];
                 yield return new WaitForSeconds(faceDelay);
             }
@@ -44,7 +43,7 @@ public class DiceAnimate : MonoBehaviour
         
     }
     public void ShowFace(int face, float faceDelay = .3f)
-    { 
+    {
         Debug.Log(face - currentSpriteNum);
         StartCoroutine(CycleFace(face - currentSpriteNum,faceDelay));
     }
@@ -53,7 +52,7 @@ public class DiceAnimate : MonoBehaviour
     {
         for (int i = 0; i < rolls; i++)
         {
-            spriteRenderer.sprite = dieSprites[Random.Range(0, dieSprites.Length - 1)];
+            spriteRenderer.sprite = dieSprites[Random.Range(1, dieSprites.Length - 1)];
             yield return new WaitForSeconds(delay);
         }
         yield return new WaitForSeconds(delay * 1.5f);
@@ -61,7 +60,7 @@ public class DiceAnimate : MonoBehaviour
     }
     public IEnumerator PlayDeath(float delay = .5f)
     {
-        spriteRenderer.sprite = deathSprite;
+        spriteRenderer.sprite = dieSprites[0];
         yield return new WaitForSeconds(.5f);
     }
 }

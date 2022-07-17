@@ -34,11 +34,7 @@ public class DiceMob : Targetable
     // Update is called once per frame
     void Update()
     {
-        if(curHealth <= 0 && alive)
-        {
-            alive = false;
-            Die();
-        }
+        
     }
 
     void TakeDamage(int damage)
@@ -49,7 +45,14 @@ public class DiceMob : Targetable
             return;
         }
         curHealth -= damage;
-        diceAnimator.ShowFace(curHealth - damage);
+        if (curHealth <= 0 && alive)
+        {
+            curHealth = 0;
+            alive = false;
+            Die();
+            Debug.Log($"{gameObject.name} Died");
+        }
+        diceAnimator.ShowFace(curHealth);
         Debug.Log($"{gameObject.name} took {damage} damage and now has {curHealth} health remaining!");
         //cycle die face down to damage number;
     }

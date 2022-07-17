@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathSprite: {fileID: -593691248, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
   dieSprites:
+  - {fileID: -593691248, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
   - {fileID: 1997351429, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
   - {fileID: 1404356011, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
   - {fileID: -1648276289, guid: 4223813eed7358b4f83d6a2414c2313a, type: 3}
