@@ -51,10 +51,9 @@ public class DiceAnimate : MonoBehaviour
         }
         
     }
-    public void ShowFace(int face, float faceDelay = .3f)
+    public Coroutine ShowFace(int face, float faceDelay = .3f)
     {
-        Debug.Log(face - currentSpriteNum);
-        StartCoroutine(CycleFace(face - currentSpriteNum,faceDelay));
+        return StartCoroutine(CycleFace(face - currentSpriteNum,faceDelay));
     }
 
     public IEnumerator PlayRoll(int rolls = 6, float delay = .12f)

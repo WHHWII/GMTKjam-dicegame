@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     Targetable[] targets;
     bool isSelectingTarget = false;
     int targetIndex = 0;
-    Targetable currentTarget;
+    public Targetable currentTarget;
     public Transform roomPositioner;
     public Transform[] doorPositioners;
     // Start is called before the first frame update
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
     {
         return roomPrefabs[index];
     }
-    public async Task<Targetable> PickTarget(Targetable[] possibleTargets, int targIndx = 0) // Waits for player to select a target.
+    public IEnumerator PickTarget(Targetable[] possibleTargets, int targIndx = 0) // Waits for player to select a target.
     {
         targets = possibleTargets;
         isSelectingTarget = true;
@@ -84,10 +84,10 @@ public class GameManager : MonoBehaviour
         currentTarget.EnableTargetedVisual(true);
         while (isSelectingTarget)
         {
-            await Task.Delay(50);
+            yield return new WaitForSeconds(0.05f);
         }
         Debug.Log("Turn ended");
-        return currentTarget;
+        yield return currentTarget;
     }
     void SpawnDoors()
     {

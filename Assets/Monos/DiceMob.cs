@@ -41,7 +41,6 @@ public class DiceMob : Targetable
     {
         if (!alive)
         {
-            Debug.Log("he dead");
             return;
         }
         curHealth -= damage;
@@ -57,12 +56,17 @@ public class DiceMob : Targetable
         //cycle die face down to damage number;
     }
     
-    public void Attack(DiceMob foe)
+    public Coroutine Attack(DiceMob foe)
     {
         int damage = Random.Range(1, curHealth);
-        Debug.Log($"you rolled a {damage}!");
-        diceAnimator.ShowFace(damage);
+        Debug.Log($"{gameObject.name} rolled a {damage}!");
         foe.TakeDamage(damage);
+        return diceAnimator.ShowFace(damage);
+    }
+
+    public Coroutine SetFace(int face)
+    {
+        return diceAnimator.ShowFace(face);
     }
 
     void Die()
@@ -72,6 +76,6 @@ public class DiceMob : Targetable
     }
     public override void WhenSelectedBy(DiceMob selector)
     {
-        selector.Attack(this);
+        //selector.Attack(this);
     }
 }

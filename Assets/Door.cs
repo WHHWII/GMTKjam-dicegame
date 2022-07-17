@@ -10,9 +10,7 @@ public class Door : Targetable
     void Awake()
     {
         roomVal = Random.Range(1,GameManager.singleton.roomPrefabs.Length);
-        Debug.Log(roomVal);
         dieDisplay.ShowFace(roomVal);
-        Debug.Log("door awake");
     }
     
     public override void WhenSelectedBy(DiceMob Selector)
