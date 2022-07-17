@@ -9,7 +9,7 @@ public class Door : Targetable
     public DiceAnimate dieDisplay;
     void Awake()
     {
-        roomVal = Random.Range(0,GameManager.singleton.roomPrefabs.Length);
+        roomVal = Random.Range(1,GameManager.singleton.roomPrefabs.Length);
         Debug.Log(roomVal);
         dieDisplay.ShowFace(roomVal);
         Debug.Log("door awake");

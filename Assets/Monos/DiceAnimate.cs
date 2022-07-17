@@ -6,7 +6,18 @@ using UnityEngine;
 public class DiceAnimate : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
-    int currentSpriteNum;
+    int _currentSpriteNum = 0;
+    int currentSpriteNum {
+        get
+        {
+            return _currentSpriteNum;
+        }
+        set
+        {
+            _currentSpriteNum = value;
+            spriteRenderer.sprite = dieSprites[_currentSpriteNum];
+        }
+    }
     public Sprite[] dieSprites;
 
     // Start is called before the first frame update
@@ -14,7 +25,6 @@ public class DiceAnimate : MonoBehaviour
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         
-        spriteRenderer.sprite = dieSprites[dieSprites.Length-1];
         currentSpriteNum = dieSprites.Length-1;
     }
 
@@ -36,7 +46,6 @@ public class DiceAnimate : MonoBehaviour
             while (currentSpriteNum != targetFace)
             {
                 currentSpriteNum = Mathf.Clamp(currentSpriteNum + value, 0, dieSprites.Length - 1);
-                spriteRenderer.sprite = dieSprites[currentSpriteNum];
                 yield return new WaitForSeconds(faceDelay);
             }
         }
@@ -50,17 +59,18 @@ public class DiceAnimate : MonoBehaviour
 
     public IEnumerator PlayRoll(int rolls = 6, float delay = .12f)
     {
+        var originalSpriteNum = currentSpriteNum;
         for (int i = 0; i < rolls; i++)
         {
-            spriteRenderer.sprite = dieSprites[Random.Range(1, dieSprites.Length - 1)];
+            currentSpriteNum = Random.Range(1, dieSprites.Length - 1);
             yield return new WaitForSeconds(delay);
         }
         yield return new WaitForSeconds(delay * 1.5f);
-        spriteRenderer.sprite = dieSprites[currentSpriteNum];
+        currentSpriteNum = originalSpriteNum;
     }
     public IEnumerator PlayDeath(float delay = .5f)
     {
-        spriteRenderer.sprite = dieSprites[0];
+        currentSpriteNum = 0;
         yield return new WaitForSeconds(.5f);
     }
 }
