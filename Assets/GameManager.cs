@@ -11,12 +11,14 @@ public class GameManager : MonoBehaviour
     public static GameManager singleton;
     public DiceMob[] enemyPrefabs; //referenced by room class to spawn random enemies
     public Room[] roomPrefabs;
+    public Door door;
 
     Targetable[] targets;
     bool isSelectingTarget = false;
     int targetIndex = 0;
     Targetable currentTarget;
     public Transform roomPositioner;
+    public Transform[] doorPositioners;
     // Start is called before the first frame update
     void Awake()
     {
@@ -25,40 +27,14 @@ public class GameManager : MonoBehaviour
         {
             currentRoom = Instantiate(GetRandomRoom());
         }
+        SpawnDoors();
     }
 
     
     void Update()
     {
         if (isSelectingTarget) // While selecting target, player may use arrow keys to cycle their target index, corresponding with the list of targets
-        {
-           /* if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                if (targetIndex > 0)
-                {
-                    if (currentTarget)
-                    {
-                        currentTarget.EnableTargetedVisual(false);
-                    }
-                    --targetIndex;
-                    currentTarget = targets[targetIndex];
-                    currentTarget.EnableTargetedVisual(true);
-                }
-
-            }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                if (targetIndex < targets.Length - 1)
-                {
-                    if (currentTarget)
-                    {
-                        currentTarget.EnableTargetedVisual(false);
-                    }
-                    ++targetIndex;
-                    currentTarget = targets[targetIndex];
-                    currentTarget.EnableTargetedVisual(true);
-                }
-            }*/
+        { 
 
             if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
@@ -112,5 +88,14 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log("Turn ended");
         return currentTarget;
+    }
+    void SpawnDoors()
+    {
+        for(int i = 0;i<doorPositioners.Length;i++)
+        {
+            Door _door = Instantiate(door);
+            _door.transform.position = doorPositioners[i].position;
+            _door.transform.rotation = Quaternion.Euler(0, 0, 90*i);
+        }
     }
 }
