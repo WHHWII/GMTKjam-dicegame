@@ -702,6 +702,7 @@ MonoBehaviour:
   - {fileID: 7414421480175012469, guid: d9ee2e2d03f780945a04180585f2d67d, type: 3}
   - {fileID: 4226269686246372464, guid: 1211dc349a5c21c47a71264af0e681aa, type: 3}
   door: {fileID: 8481538032709511893, guid: d61b9870511629a419150b4f58a03b69, type: 3}
+  doors: []
   currentTarget: {fileID: 0}
   roomPositioner: {fileID: 2128857819}
   doorPositioners:

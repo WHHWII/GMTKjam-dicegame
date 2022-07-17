@@ -74,7 +74,7 @@ public class Room : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         yield return player.SetFace(player.Health);
         Debug.Log("Waiting 1 second");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.3f);
 
         foreach (DiceMob enemy in enemies.ToArray())
         {

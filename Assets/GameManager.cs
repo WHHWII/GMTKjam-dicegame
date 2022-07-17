@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         singleton = this;//Sam told me to put this here for somethign about dont destroy on load
         if(roomPrefabs.Length > 0)
         {
-            currentRoom = Instantiate(GetRandomRoom());
+            currentRoom = Instantiate(roomPrefabs[0]);
         }
     }
 

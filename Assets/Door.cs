@@ -21,7 +21,7 @@ public class Door : Targetable
         foreach(Door door in GameManager.singleton.doors.ToArray())
         {
             GameManager.singleton.doors.Remove(door);
-            Destroy(door);
+            Destroy(door.gameObject);
         }
 
     }

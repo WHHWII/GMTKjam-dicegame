@@ -51,7 +51,7 @@ public class DiceAnimate : MonoBehaviour
         }
         
     }
-    public Coroutine ShowFace(int face, float faceDelay = .3f)
+    public Coroutine ShowFace(int face, float faceDelay = .1f)
     {
         return StartCoroutine(CycleFace(face - currentSpriteNum,faceDelay));
     }
