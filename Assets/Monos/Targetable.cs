@@ -11,7 +11,8 @@ public class Targetable : MonoBehaviour
         if (show)
         {
             instantiatedTargetVisual = Instantiate(targetVisual);
-            instantiatedTargetVisual.transform.position = gameObject.transform.position + new Vector3(0,0,0.01f);
+            instantiatedTargetVisual.transform.position = gameObject.transform.position;
+
         } else
         {
             Destroy(instantiatedTargetVisual);
