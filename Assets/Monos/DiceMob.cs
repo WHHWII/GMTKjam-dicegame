@@ -70,7 +70,7 @@ public class DiceMob : Targetable
         StartCoroutine(diceAnimator.PlayDeath());
         //Destroy(gameObject);
     }
-    public override void WhenSelected(DiceMob selector)
+    public override void WhenSelectedBy(DiceMob selector)
     {
         selector.Attack(this);
     }

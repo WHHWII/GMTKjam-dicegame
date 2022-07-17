@@ -38,11 +38,12 @@ public class Room : MonoBehaviour
         }
         await GameManager.singleton.PickTarget(targetableComponents.ToArray());
         //pass turn to enemies
-        foreach(DiceMob enemy in enemies)
+        foreach(DiceMob enemy in enemies.ToArray())
         {
             if (!enemy.alive)
             {
-                Destroy(enemy);
+                enemies.Remove(enemy);
+                Destroy(enemy.gameObject);
             }
         }
         return;

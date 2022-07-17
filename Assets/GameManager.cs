@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                targets[targetIndex].WhenSelected(player);
+                targets[targetIndex].WhenSelectedBy(player);
                 isSelectingTarget = false;
             }
         }
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     {
         return roomPrefabs[index];
     }
-    public async Task PickTarget(Targetable[] possibleTargets, int targIndx = 0) // Waits for player to select a target.
+    public async Task<Targetable> PickTarget(Targetable[] possibleTargets, int targIndx = 0) // Waits for player to select a target.
     {
         targets = possibleTargets;
         isSelectingTarget = true;
@@ -78,6 +78,6 @@ public class GameManager : MonoBehaviour
             await Task.Delay(50);
         }
         Debug.Log("Turn ended");
-        return;
+        return selectedTarget;
     }
 }

@@ -15,7 +15,7 @@ public class Door : Targetable
         Debug.Log("door awake");
     }
 
-    public override void WhenSelected(DiceMob Selector)
+    public override void WhenSelectedBy(DiceMob Selector)
     {
         GameManager.singleton.currentRoom = GameManager.singleton.roomPrefabs[roomVal];
     }
